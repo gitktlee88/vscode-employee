@@ -1,0 +1,6 @@
+{% extends 'page_base.html' %}
+{% block content %}
+    <h1>This is just for Pages home.</h1>
+    {{ request.user.is_authenticated}}
+    <p>This is from pages templates</p>
+{% endblock %}

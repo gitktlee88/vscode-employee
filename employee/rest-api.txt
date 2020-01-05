@@ -1,0 +1,59 @@
+D:\>
+D:\> python -m venv venv-name
+
+D:\> Scripts\activate
+(venv) D:\venv-name> pip install django
+
+(venv) D:\venv-name> pip install djangorestframework
+
+(venv) D:\venv-name> django-admin startproject employee
+
+(venv) D:\venv-name> manage.py makemigrations
+(venv) D:\venv-name> manage.py migrate
+
+(venv) D:\venv-name> django-admin startapp hrm
+  add hrm in settings.py
+  update models.py in hrm
+  create api.py & serializers.py
+
+(venv) D:\venv-name> pip install pillow
+   install any required libraries
+
+(venv) D:\venv-name> manage.py makemigrations hrm
+(venv) D:\venv-name> manage.py migrate
+
+(venv) D:\venv-name> manage.py createsuperuser
+  register admin.site.register(Users) in admin.py
+
+## settings.py for TokenAuthentication ##
+
+INSTALLED_APPS = [
+    'rest_framework.authtoken',
+
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticatedOrReadOnly',
+    ],
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.BasicAuthentication',  # username/password authentication
+        'rest_framework.authentication.SessionAuthentication', # while user is logged in
+        'rest_framework.authentication.TokenAuthentication',
+        'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
+    )
+}
+
+(venv) D:\venv-name> manage.py makemigrations hrm
+(venv) D:\venv-name> manage.py migrate
+
+
+## to use django shell command ##
+(venv) D:\venv-name> python manage.py shell
+
+  >>> from guestbook.models import Comment
+  >>> Comment.objects.all()
+  <QuerySet [<Comment: Kelly, 1>, <Comment: Anthony, 2>, <Comment: M, 3>]>
+  >>> Comment.objects.create(name='Ben', comment='whats up', date_added='2019-05-30 09:21:19.432986+00:00')
+
+## {% load static %} on top of base.html  ##
+// don't forget templates path in settings.py
+// to use GET, POST csrf_token in .html  {% csrf_token %}  
