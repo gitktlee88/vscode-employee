@@ -1,0 +1,5 @@
+venv
+.vscode
+employee/__pycache__
+hrm/__pycache__
+pages/__pycache__
